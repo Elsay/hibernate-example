@@ -18,6 +18,23 @@ public class HibernateExampleApp
 
         EntityManagerFactory entityManagerFactory = context.getBean(EntityManagerFactory.class);
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+
+            // add a student into db
+            entityManager.persist(new Student(22, "Ivanov", "Ivan", "Sergeyevich"));
+
+            // merge using for update and insert
+            Student newStudent = entityManager.merge(new Student(25, "Sidorov", "Petr" ));
+            System.out.println(newStudent);
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Exception occurred, rollback. Exception " + e);
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
 
         context.close();
     }
