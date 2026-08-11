@@ -10,10 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * Hello world!
  *
  */
-public class HibernateExampleApp
-{
-    public static void main( String[] args )
-    {
+public class HibernateExampleApp {
+    public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfig.class);
 
         EntityManagerFactory entityManagerFactory = context.getBean(EntityManagerFactory.class);
@@ -21,12 +19,13 @@ public class HibernateExampleApp
         try {
             entityManager.getTransaction().begin();
 
-            // add a student into db
-            entityManager.persist(new Student(22, "Ivanov", "Ivan", "Sergeyevich"));
+            // update student's data
+            Student student = entityManager.find(Student.class, 13);
+            System.out.println(student);
+            student.setAge(26);
 
-            // merge using for update and insert
-            Student newStudent = entityManager.merge(new Student(25, "Sidorov", "Petr" ));
-            System.out.println(newStudent);
+            Student updatedStudent = entityManager.merge(student);
+            System.out.println(updatedStudent);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
