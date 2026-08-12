@@ -6,6 +6,8 @@ import kz.codekitchen.config.HibernateConfig;
 import kz.codekitchen.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -19,10 +21,8 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            int updatedRowCount = entityManager
-                    .createQuery("update Student set middleName = 'Sergeevich' where id = 14")
-                    .executeUpdate();
-            System.out.println("Updated row count: " + updatedRowCount);
+            List<Student> students = entityManager.createQuery("from Student where age between 20 and 25").getResultList();
+            System.out.println(students);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
