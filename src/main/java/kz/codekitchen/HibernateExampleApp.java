@@ -21,8 +21,12 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            List<String> students = entityManager.createQuery("select s.firstName from Student s where s.age between 20 and 25").getResultList();
-            System.out.println(students);
+            List<Object[]> students = entityManager
+                    .createQuery("select lastName, firstName from Student where age between 20 and 25")
+                    .getResultList();
+            students.forEach(student ->
+                    System.out.println(student[0] + " " + student[1])
+            );
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
