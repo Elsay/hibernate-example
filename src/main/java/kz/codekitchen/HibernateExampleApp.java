@@ -19,13 +19,8 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            // update student's data
-            Student student = entityManager.find(Student.class, 13);
-            System.out.println(student);
-            student.setAge(26);
-
-            Student updatedStudent = entityManager.merge(student);
-            System.out.println(updatedStudent);
+            entityManager.persist(new Student(20, "Ivanov", "Ivan", "Ivanovich"));
+            entityManager.persist(new Student(21, null, "Peter"));
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
