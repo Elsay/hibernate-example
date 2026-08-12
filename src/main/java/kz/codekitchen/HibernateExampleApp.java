@@ -19,8 +19,10 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            int deletedRowCount = entityManager.createQuery("delete from Student where id = 12").executeUpdate();
-            System.out.println("deleted row count: " + deletedRowCount);
+            int updatedRowCount = entityManager
+                    .createQuery("update Student set middleName = 'Sergeevich' where id = 14")
+                    .executeUpdate();
+            System.out.println("Updated row count: " + updatedRowCount);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
