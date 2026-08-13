@@ -3,6 +3,7 @@ package kz.codekitchen;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import kz.codekitchen.config.HibernateConfig;
+import kz.codekitchen.entity.Address;
 import kz.codekitchen.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -21,14 +22,18 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            List<Object[]> students = entityManager
-                    .createQuery("select lastName, firstName from Student where age between 20 and 25")
-                    .getResultList();
-            students.forEach(student ->
-                    System.out.println(student[0] + " " + student[1])
-            );
+            Student student = new Student(25, "Sergeev", "Anton");
+            entityManager.persist(student);
+
+            Address address = new Address("Central Park", 5, 12);
+            address.setStudent(student);
+            entityManager.persist(address);
 
             entityManager.getTransaction().commit();
+
+            Address address1 = entityManager.find(Address.class, 1);
+            System.out.println(address1);
+            System.out.println(address1.getStudent());
         } catch (Exception e) {
             System.out.println("Exception occurred, rollback. Exception " + e);
             entityManager.getTransaction().rollback();

@@ -20,7 +20,7 @@ public class Student {
     @Column(name = "first_name", nullable = false, length = 50)
     private String firstName;
 
-    @Column(name = "middle_name", length = 50, nullable = true)
+    @Column(name = "middle_name", length = 50)
     private String middleName;
 
     public Student() {
