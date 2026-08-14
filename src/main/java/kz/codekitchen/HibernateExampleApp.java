@@ -22,18 +22,11 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Student student = new Student(25, "Sergeev", "Anton");
-            entityManager.persist(student);
-
-            Address address = new Address("Central Park", 5, 12);
-            address.setStudent(student);
-            entityManager.persist(address);
+            Student student = entityManager.find(Student.class, 18);
+            System.out.println(student);
+            System.out.println(student.getAddress());
 
             entityManager.getTransaction().commit();
-
-            Address address1 = entityManager.find(Address.class, 1);
-            System.out.println(address1);
-            System.out.println(address1.getStudent());
         } catch (Exception e) {
             System.out.println("Exception occurred, rollback. Exception " + e);
             entityManager.getTransaction().rollback();
