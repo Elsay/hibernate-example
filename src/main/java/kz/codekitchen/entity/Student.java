@@ -88,6 +88,7 @@ public class Student {
 
     public void setAddress(Address address) {
         this.address = address;
+        address.setStudent(this);
     }
 
     @Override
