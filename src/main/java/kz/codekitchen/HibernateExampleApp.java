@@ -22,10 +22,14 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Address address = new Address("Test street", 5, 5);
-            Student student = new Student(25, "Testov", "Test");
-            student.setAddress(address);
-            entityManager.persist(student);
+            Student student = entityManager.find(Student.class, 26);
+            Address address = student.getAddress();
+            address.setStreet("New Test street");
+
+//            Address address = new Address("Test street", 5, 5);
+//            Student student = new Student(25, "Testov", "Test");
+//            student.setAddress(address);
+//            entityManager.persist(student);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
