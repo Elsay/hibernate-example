@@ -23,7 +23,7 @@ public class Student {
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
-    @OneToOne(mappedBy = "student")
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private Address address;
 
     public Student() {
