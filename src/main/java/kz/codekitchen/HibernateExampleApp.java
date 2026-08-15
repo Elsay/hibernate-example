@@ -23,8 +23,7 @@ public class HibernateExampleApp {
             entityManager.getTransaction().begin();
 
             Student student = entityManager.find(Student.class, 26);
-            Address address = student.getAddress();
-            address.setStreet("New Test street");
+            entityManager.remove(student);
 
 //            Address address = new Address("Test street", 5, 5);
 //            Student student = new Student(25, "Testov", "Test");
