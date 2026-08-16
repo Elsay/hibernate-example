@@ -23,7 +23,7 @@ public class Student {
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Address address;
 
     public Student() {
@@ -88,7 +88,9 @@ public class Student {
 
     public void setAddress(Address address) {
         this.address = address;
-        address.setStudent(this);
+        if (address != null) {
+            address.setStudent(this);
+        }
     }
 
     @Override
