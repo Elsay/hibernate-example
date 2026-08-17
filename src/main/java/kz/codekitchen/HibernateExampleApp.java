@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import kz.codekitchen.config.HibernateConfig;
 import kz.codekitchen.entity.Address;
+import kz.codekitchen.entity.Group;
 import kz.codekitchen.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,17 +23,11 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Student student = entityManager.find(Student.class, 33);
-            Address address = student.getAddress();
-            student.setAddress(null);
-            address.setStudent(null);
-            entityManager.remove(address);
-
-//            Address address = new Address("Test street", 5, 5);
-//            Student student = new Student(25, "Testov", "Test");
-//            student.setAddress(address);
-//            entityManager.persist(student);
-//            entityManager.persist(address);
+            Group group = new Group("4399", FacultyType.CHEMISTRY);
+            Student student = new Student(18, "Popov", "Viktor", "Ivanovich");
+            student.setGroup(group);
+            entityManager.persist(group);
+            entityManager.persist(student);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {

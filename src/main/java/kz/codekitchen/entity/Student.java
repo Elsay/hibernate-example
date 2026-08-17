@@ -23,8 +23,12 @@ public class Student {
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
-    @OneToOne(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     public Student() {
     }
@@ -91,6 +95,14 @@ public class Student {
         if (address != null) {
             address.setStudent(this);
         }
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @Override
