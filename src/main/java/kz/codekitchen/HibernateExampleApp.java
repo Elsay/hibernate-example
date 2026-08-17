@@ -23,9 +23,8 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Group group = entityManager.find(Group.class, 5);
-            System.out.println(group);
-            System.out.println(group.getStudents());
+            Student student = entityManager.find(Student.class, 42);
+            entityManager.remove(student);
 
 //            Group group = new Group("4111", FacultyType.IT);
 //            Student student1 = new Student(18, "Popov1", "Viktor", "Ivanovich");
