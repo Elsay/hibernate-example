@@ -23,11 +23,15 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Group group = new Group("4399", FacultyType.CHEMISTRY);
-            Student student = new Student(18, "Popov", "Viktor", "Ivanovich");
-            student.setGroup(group);
-            entityManager.persist(group);
-            entityManager.persist(student);
+//            Group group = new Group("4399", FacultyType.CHEMISTRY);
+//            Student student = new Student(18, "Popov", "Viktor", "Ivanovich");
+//            student.setGroup(group);
+//            entityManager.persist(group);
+//            entityManager.persist(student);
+
+            Student student = entityManager.find(Student.class, 34);
+            System.out.println(student);
+            System.out.println(student.getGroup());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
