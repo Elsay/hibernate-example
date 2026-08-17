@@ -29,9 +29,9 @@ public class HibernateExampleApp {
 //            entityManager.persist(group);
 //            entityManager.persist(student);
 
-            Student student = entityManager.find(Student.class, 34);
-            System.out.println(student);
-            System.out.println(student.getGroup());
+            Group group = entityManager.find(Group.class, 1);
+            System.out.println(group);
+            System.out.println(group.getStudents());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {

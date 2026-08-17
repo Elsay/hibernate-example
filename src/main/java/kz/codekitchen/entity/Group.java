@@ -20,6 +20,9 @@ public class Group {
     @Column(name = "faculty_type", nullable = false)
     private FacultyType facultyType;
 
+    @OneToMany(mappedBy = "group")
+    private List<Student> students;
+
     public Group() {
     }
 
@@ -50,6 +53,14 @@ public class Group {
 
     public void setFacultyType(FacultyType facultyType) {
         this.facultyType = facultyType;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @Override
