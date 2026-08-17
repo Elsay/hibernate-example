@@ -3,6 +3,7 @@ package kz.codekitchen.entity;
 import jakarta.persistence.*;
 import kz.codekitchen.FacultyType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,17 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private List<Student> students;
+
+    public void addStudentToGroup(Student student) {
+        if (students == null) {
+            students = new ArrayList<>();
+        }
+
+        if (student != null) {
+            students.add(student);
+            student.setGroup(this);
+        }
+    }
 
     public Group() {
     }
