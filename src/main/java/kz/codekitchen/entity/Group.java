@@ -21,7 +21,7 @@ public class Group {
     @Column(name = "faculty_type", nullable = false)
     private FacultyType facultyType;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students;
 
     public void addStudentToGroup(Student student) {

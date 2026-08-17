@@ -31,9 +31,6 @@ public class HibernateExampleApp {
             group.addStudentToGroup(student2);
             group.addStudentToGroup(student3);
             entityManager.persist(group);
-            entityManager.persist(student1);
-            entityManager.persist(student2);
-            entityManager.persist(student3);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
