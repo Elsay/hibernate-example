@@ -27,8 +27,8 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Section section = entityManager.find(Section.class, 4);
-            section.setStudents(Collections.emptyList());
+            Student student = entityManager.find(Student.class, 12);
+            entityManager.remove(student);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
