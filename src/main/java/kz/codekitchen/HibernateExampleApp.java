@@ -2,6 +2,7 @@ package kz.codekitchen;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 import kz.codekitchen.config.HibernateConfig;
 import kz.codekitchen.entity.Address;
 import kz.codekitchen.entity.Group;
@@ -26,8 +27,11 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Student student = entityManager.find(Student.class, 49);
-            student.setSections(Collections.emptyList());
+            Student student = entityManager.find(Student.class, 12);
+            List<Section> ballSections = entityManager
+                    .createQuery("select s from Section s where s.id in (1, 2)")
+                    .getResultList();
+            student.setSections(ballSections);
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
