@@ -26,33 +26,9 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Section footballSection = new Section(SectionType.FOOTBALL);
-            entityManager.persist(footballSection);
-
-            Section basketSection = new Section(SectionType.BASKETBALL);
-            entityManager.persist(basketSection);
-
-            Section swimmingSection = new Section(SectionType.SWIMMING);
-            entityManager.persist(swimmingSection);
-
-            Section dancingSection = new Section(SectionType.DANCING);
-            entityManager.persist(dancingSection);
-
-            Student student1 = new Student(20, "Sidorov", "Ivan");
-            student1.setSections(Arrays.asList(footballSection, basketSection));
-            entityManager.persist(student1);
-
-            Student student2 = new Student(19, "Petrov", "Andrey");
-            student2.setSections(Arrays.asList(footballSection, swimmingSection));
-            entityManager.persist(student2);
-
-            Student student3 = new Student(17, "Popov", "Alex");
-            student3.setSections(Collections.singletonList(dancingSection));
-            entityManager.persist(student3);
-
-            Student student4 = new Student(25, "Little", "Styort");
-            student4.setSections(Collections.singletonList(footballSection));
-            entityManager.persist(student4);
+            Section section = entityManager.find(Section.class, 1);
+            System.out.println(section);
+            System.out.println(section.getStudents());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
