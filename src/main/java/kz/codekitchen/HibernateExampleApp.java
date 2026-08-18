@@ -27,11 +27,8 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Student student = entityManager.find(Student.class, 12);
-            List<Section> ballSections = entityManager
-                    .createQuery("select s from Section s where s.id in (1, 2)")
-                    .getResultList();
-            student.setSections(ballSections);
+            Section section = entityManager.find(Section.class, 4);
+            section.setStudents(Collections.emptyList());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
