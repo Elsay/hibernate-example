@@ -27,8 +27,7 @@ public class HibernateExampleApp {
             entityManager.getTransaction().begin();
 
             Student student = entityManager.find(Student.class, 49);
-            System.out.println(student);
-            System.out.println(student.getSections());
+            student.setSections(Collections.emptyList());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
