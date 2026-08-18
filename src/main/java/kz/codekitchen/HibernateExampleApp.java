@@ -26,9 +26,9 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Section section = entityManager.find(Section.class, 1);
-            System.out.println(section);
-            System.out.println(section.getStudents());
+            Student student = entityManager.find(Student.class, 49);
+            System.out.println(student);
+            System.out.println(student.getSections());
 
             entityManager.getTransaction().commit();
         } catch (Exception e) {
