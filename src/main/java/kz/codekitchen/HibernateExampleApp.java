@@ -27,7 +27,7 @@ public class HibernateExampleApp {
         try {
             entityManager.getTransaction().begin();
 
-            Section section = entityManager.find(Section.class, 12);
+            Section section = entityManager.find(Section.class, 1);
             entityManager.remove(section);
 
             entityManager.getTransaction().commit();
